@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Biblioteca de íconos Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Archivo reset Normalize -->
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <!-- Archivo de estilos -->
+    <link rel="stylesheet" href="css/day-interactive-card-details-form.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./images/favicon-32x32.png" type="image/x-icon">
+    <title>Interactive Card Details Form</title>
+</head>
+
+<body>
+
+    <main class="contenido">
+
+        <div class="fondo-imagen">
+            <img src="images/bg-main-desktop.png" alt="Image background">
+        </div>
+
+        <div class="tarjeta-ppal">
+            <img src="images/card-logo.svg" alt="Card logo">
+            <p class="number__card" id="card__number">0000 0000 0000 0000</p>
+            <div class="info__card">
+                <p class="info__card__name" id="card__name">Jane Appleseed</p>
+                <p class="info__card__date" id="card__date">00/00</p>
+            </div>
+        </div>
+
+        <div class="tarjeta-ppal__reverso">
+            <span class="cvv__card" id="card__cvv">000</span>
+        </div>
+
+        <div class="tarjeta-ppal__formato">
+            <div class="registro__datos">
+                <label for="name">Cardholder Name</label>
+                <input type="text" id="name" name="name" placeholder="Muestra: Jane Appleseed">
+                <span class="error__mensaje">Can't be blank</span>
+            </div>
+
+            <div class="registro__datos">
+                <label for="card">Card Number</label>
+                <input type="text" id="card" name="card" placeholder="Muestra: 1234 5678 9123 0000">
+                <span class="error__mensaje">Can't be blank</span>
+            </div>
+
+            <div class="tarjeta-ppal_grupo">
+                <div class="registro__datos">
+                    <label for="date">Exp. Date (MM/YY)</label>
+                    <div class="registro__fecha">
+                        <input type="number" id="date_mm" name="date" placeholder="MM">
+                        <input type="number" id="date_yy" name="date" placeholder="YY">
+                    </div>
+                    <span class="error__mensaje">Can't be blank</span>
+                </div>
+
+                <div class="registro__datos">
+                    <label for="cvv">CVC</label>
+                    <input type="number" id="cvv" name="cvv" placeholder="e.g. 123">
+                    <span class="error__mensaje">Can't be blank</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn__submit" onclick="validateCard()">Confirm</button>
+        </div>
+
+        <div class="confirmacion">
+            <img src="images/icon-complete.svg" alt="Icon complete">
+
+            <h2 class="confirmacion__titulo">Thank you!</h2>
+
+            <p class="confirmacion__mensaje">We've added your card details</p>
+
+            <button class="btn__submit" onclick="back()">Continue</button>
+        </div>
+
+
+    </main>
+
+
+    <script src="js/day-interactive-card-details-form.js"></script>
+</body>
+
+</html>

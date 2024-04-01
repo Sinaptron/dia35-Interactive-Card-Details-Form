@@ -1,0 +1,566 @@
+/* -----------------
+Tabla de contenidos:
+--------------------
+1. Fuente ................ 11
+2. Variables ............. 17
+3. Estilos generales ..... 32
+-------------------- 
+*/
+
+
+/* ----- Fuente ----- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+
+/* ----- Variables ----- */
+:root {
+  /* Paleta de colores */
+  --color-gradient: linear-gradient(90deg, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  --color-red: hsl(0, 100%, 66%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-light-grayish-violet: hsl(270, 3%, 87%);
+  --color-dark-grayish-violet: hsl(279, 6%, 55%);
+  --color-very-dark-violet: hsl(278, 68%, 11%);
+
+  /* Tipografia */
+  --font-family: 'Space Grotesk', sans-serif;
+  --font-weight: 500;
+  --font-size: 18px;
+
+}
+
+
+/* ----------------------------- */
+/* ----- Estilos generales ----- */
+/* ----------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  color: var(--color-very-dark-violet);
+  overflow: hidden;
+}
+
+/* ------- ESTILOS GENERALES ------- */
+.btn__submit {
+  position: relative;
+  background-color: var(--color-very-dark-violet);
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 1s ease;
+}
+
+.btn__submit::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--color-gradient);
+  border-radius: 5px;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: transform .5s;
+  transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.btn__submit:hover::before {
+  transform: scaleX(1);
+}
+
+.btn__submit:hover {
+  background-color: transparent;
+}
+
+.error__mensaje {
+  height: 0px;
+  font-size: 12px;
+  color: var(--color-red);
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.error__mensaje.active {
+  height: 15px;
+}
+
+/* ----- ESTILOS DE LA TARJETA ----- */
+
+.contenido {
+  position: relative;
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  height: 100%;
+}
+
+.contenido .fondo-imagen {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.contenido .fondo-imagen img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ----- CARD FRONT ----- */
+.contenido .tarjeta-ppal,
+.contenido .tarjeta-ppal__reverso {
+  position: absolute;
+  height: 240px;
+  width: 440px;
+  border-radius: 10px;
+  background: url('../images/bg-card-front.png') no-repeat center left / cover;
+  box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.contenido .tarjeta-ppal {
+  top: 16%;
+  left: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 25px;
+  padding: 28px;
+  color: var(--color-white);
+}
+
+.contenido .tarjeta-ppal img {
+  height: 45px;
+  width: 82px;
+  margin-bottom: auto;
+}
+
+.contenido .tarjeta-ppal .number__card {
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.contenido .tarjeta-ppal .info__card {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.contenido .tarjeta-ppal .info__card .info__card__name {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ----- CARD BACK ----- */
+
+.contenido .tarjeta-ppal__reverso {
+  top: 54%;
+  left: 15%;
+  background-image: url('../images/bg-card-back.png');
+}
+
+.contenido .tarjeta-ppal__reverso .cvv__card {
+  position: absolute;
+  top: 45.5%;
+  right: 13%;
+  font-size: 14px;
+  color: var(--color-white);
+}
+
+/* ----- FORM CARD ----- */
+
+.contenido .tarjeta-ppal__formato {
+  grid-column: 2 / 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  width: 350px;
+  margin-top: 10px;
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos input {
+  padding: 10px;
+  border: 1px solid var(--color-light-grayish-violet);
+  border-radius: 10px;
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos input.error {
+  border-color: var(--color-red);
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos input:focus {
+  outline: none;
+  border-color: var(--color-dark-grayish-violet)
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos input::placeholder {
+  color: var(--color-light-grayish-violet)
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos input[type="number"]::-webkit-inner-spin-button,
+.contenido .tarjeta-ppal__formato .registro__datos input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.contenido .tarjeta-ppal__formato .registro__datos input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos {
+  width: 48%;
+}
+
+.contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos input {
+  width: 100%;
+}
+
+.contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos .registro__fecha {
+  display: flex;
+  gap: 10px;
+}
+
+.contenido .tarjeta-ppal__formato.is_confirm {
+  animation: move_top 1s ease forwards;
+}
+
+/* ----- Confirma mensaje ----- */
+
+.contenido .confirmacion {
+  grid-column: 2 / 3;
+  position: absolute;
+  top: 200%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  width: 350px;
+  padding-top: 20px;
+}
+
+.contenido .confirmacion img {
+  height: 65px;
+  width: 65px;
+}
+
+.contenido .confirmacion .confirmacion__titulo {
+  margin-top: 30px;
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.contenido .confirmacion .confirmacion__mensaje {
+  margin-bottom: 40px;
+  font-size: 17px;
+  color: var(--color-dark-grayish-violet);
+}
+
+.contenido .confirmacion .btn__submit {
+  width: 100%;
+}
+
+.contenido .confirmacion.is_confirm {
+  animation: displayTop 1s ease forwards;
+}
+
+/* ------- ANIMATIONS -------- */
+
+@keyframes move_top {
+  0% {
+    top: 50%;
+  }
+
+  100% {
+    top: -100%;
+  }
+}
+
+@keyframes displayTop {
+  0% {
+    top: 200%;
+  }
+
+  100% {
+    top: 50%;
+  }
+}
+
+/* ----- MEDIA QUERIES ----- */
+@media (width < 769px) {
+  body {
+    min-height: 100dvh;
+    height: 100%;
+    overflow: initial;
+  }
+
+  .contenido {
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 1fr;
+    place-items: center;
+  }
+
+  .contenido .fondo-imagen {
+    grid-row: 1 / 2;
+    height: 250px;
+    width: 100dvw;
+  }
+
+  .contenido .fondo-imagen img {
+    content: url('../images/bg-main-mobile.png');
+  }
+
+  .contenido .tarjeta-ppal,
+  .contenido .tarjeta-ppal__reverso {
+    width: 75%;
+    height: 180px;
+  }
+
+  .contenido .tarjeta-ppal {
+    top: 16.5%;
+    left: 5%;
+    padding: 20px;
+    z-index: 5;
+  }
+
+  .contenido .tarjeta-ppal img {
+    height: 32px;
+    width: 58px;
+  }
+
+  .contenido .tarjeta-ppal .number__card {
+    font-size: 20.5px;
+  }
+
+  .contenido .tarjeta-ppal .info__card {
+    font-size: 10px;
+  }
+
+  .contenido .tarjeta-ppal__reverso {
+    top: 2%;
+    left: inherit;
+    right: 5%;
+  }
+
+  .contenido .tarjeta-ppal__reverso .cvv__card {
+    top: 45%;
+    right: 10%;
+    font-size: 12px;
+  }
+
+  .contenido .tarjeta-ppal__formato {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    position: inherit;
+    top: 0;
+    left: 0;
+    transform: initial;
+    gap: 15px;
+    height: auto;
+    width: 100dvw;
+    padding: 20px;
+    padding-top: 80px;
+  }
+
+  .contenido .tarjeta-ppal__formato.is_confirm {
+    animation: opacity_form 1s ease forwards;
+  }
+
+  .contenido .tarjeta-ppal__formato .registro__datos label {
+    font-size: 15.5px;
+  }
+
+  .contenido .tarjeta-ppal__formato .registro__datos input {
+    padding: 15px 20px;
+    font-size: 20px;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo {
+    margin-bottom: 0;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos {
+    width: 100%;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos input {
+    width: 100%;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos .registro__fecha {
+    gap: 10px;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos .registro__fecha input {
+    width: 100%;
+  }
+
+  .contenido .confirmacion {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    position: inherit;
+    top: 0;
+    left: 0;
+    transform: initial;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .contenido .confirmacion.is_confirm {
+    z-index: 5;
+    animation: opacity_confirm 1s ease forwards;
+  }
+
+
+  /* ----- Animaciones ----- */
+  @keyframes opacity_form {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes opacity_confirm {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@media (width < 376px) {
+
+  .contenido {
+    grid-template-rows: 235px 1fr;
+  }
+
+  .contenido .fondo-imagen {
+    height: 235px;
+  }
+
+  .contenido .tarjeta-ppal,
+  .contenido .tarjeta-ppal__reverso {
+    width: 77%;
+    height: 160px;
+  }
+
+  .contenido .tarjeta-ppal {
+    top: 17.3%;
+    left: 5%;
+    gap: 15px;
+  }
+
+  .contenido .tarjeta-ppal img {
+    height: 32px;
+    width: 56px;
+  }
+
+  .contenido .tarjeta-ppal::before {
+    height: 28px;
+    width: 28px;
+    left: 20px;
+  }
+
+  .contenido .tarjeta-ppal::after {
+    top: 28px;
+    left: 58px;
+  }
+
+  .contenido .tarjeta-ppal .number__card {
+    font-size: 19px;
+  }
+
+  .contenido .tarjeta-ppal .info__card {
+    font-size: 9px;
+  }
+
+  .contenido .tarjeta-ppal__reverso {
+    top: 3%;
+    right: 5%;
+  }
+
+  .contenido .tarjeta-ppal__reverso .cvv__card {
+    top: 46%;
+    right: 12%;
+    font-size: 10px;
+  }
+
+  .contenido .tarjeta-ppal__formato {
+    padding: 30px;
+    padding-top: 70px;
+  }
+
+  .contenido .tarjeta-ppal__formato .registro__datos label {
+    font-size: 13px;
+  }
+
+  .contenido .tarjeta-ppal__formato .registro__datos input {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos {
+    width: 100%;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos input {
+    width: 100%;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos .registro__fecha {
+    gap: 10px;
+  }
+
+  .contenido .tarjeta-ppal__formato .tarjeta-ppal_grupo .registro__datos .registro__fecha input {
+    width: 100%;
+  }
+
+  .contenido .confirmacion {
+    padding-top: 80px;
+  }
+}
